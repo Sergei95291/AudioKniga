@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="navigation.css">
+    <link rel="stylesheet" href="left-side-bar.css">
+    <link rel="stylesheet" href="left-side-bar-podborka.css">
+    <link rel="stylesheet" href="main-content.css">
+    <link rel="stylesheet" href="modalAuth.css">
+    <link rel="stylesheet" href="cmtPagination.css">
+</head>
+<body>
+    <div class="mainsidebar">
+    <div class="navbar" name="navBar">
+        <div class="nav-container"><img src="pictures/logo.jpg" alt="Логотип" class="logo-img">
+        <div class="logo">Anc</div></div>
+    
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Поиск аудиокниг по автору, исполнителю,названию...">
+       <button class="search-button">Найти</button>
+        </div>
+        
+        <button class="login-btn">Войти</button>
+        <!-- Модальное окно авторизации -->
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeLoginModal()">&times;</span>
+        <h2>Вход в аккаунт</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="submit-btn">Войти</button>
+        </form>
+        <div class="auth-links">
+            <a href="#" class="auth-link">Забыли пароль?</a>
+            <a href="#" class="auth-link">Регистрация</a>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <aside class="sidebar">
+
+    <div class="sidebar-header">
+        <h3>Жанры книг</h3>
+    </div>
+    
+    <nav class="genre-menu" id="genre-sidebar">
+        <!-- Выпадающий список Фантастика -->
+        <div class="genre-item">
+            <button class="genre-btn" onclick="toggleDropdown('fantasy')">
+                <span>Фантастика</span>
+            </button>
+            <div class="dropdown-content" id="fantasy-dropdown">
+                <a href="#" class="subgenre-link">Научная фантастика</a>
+                <a href="#" class="subgenre-link">Фэнтези</a>
+                <a href="#" class="subgenre-link">Ужасы</a>
+                <a href="#" class="subgenre-link">Постапокалипсис</a>
+                <a href="#" class="subgenre-link">Киберпанк</a>
+            </div>
+        </div>
+
+        <!-- Другие жанры -->
+        <div class="genre-item">
+            <button class="genre-btn" onclick="toggleDropdown('drama')">
+                <span>Драма</span>
+            </button>
+            <div class="dropdown-content" id="drama-dropdown">
+                <a href="#" class="subgenre-link">Романтическая драма</a>
+                <a href="#" class="subgenre-link">Психологическая драма</a>
+                <a href="#" class="subgenre-link">Историческая драма</a>
+            </div>
+        </div>
+
+        <div class="genre-item">
+            <button class="genre-btn" onclick="toggleDropdown('detective')">
+                <span>Детективы</span>
+            </button>
+            <div class="dropdown-content" id="detective-dropdown">
+                <a href="#" class="subgenre-link">Классический детектив</a>
+                <a href="#" class="subgenre-link">Триллер</a>
+                <a href="#" class="subgenre-link">Криминальный роман</a>
+            </div>
+        </div>
+
+        <div class="genre-item">
+            <button class="genre-btn" onclick="toggleDropdown('romance')">
+                <span>Любовные романы</span>
+            </button>
+            <div class="dropdown-content" id="romance-dropdown">
+                <a href="#" class="subgenre-link">Современные романы</a>
+                <a href="#" class="subgenre-link">Исторические романы</a>
+                <a href="#" class="subgenre-link">Мелодрама</a>
+            </div>
+        </div>
+
+        <div class="genre-item">
+            <button class="genre-btn" onclick="toggleDropdown('adventure')">
+                <span>Приключения</span>
+            </button>
+            <div class="dropdown-content" id="adventure-dropdown">
+                <a href="#" class="subgenre-link">Путешествия</a>
+                <a href="#" class="subgenre-link">Экшен</a>
+                <a href="#" class="subgenre-link">Исторические приключения</a>
+            </div>
+        </div>
+
+        <div class="genre-item">
+            <button class="genre-btn" onclick="toggleDropdown('history')">
+                <span>Исторические</span>
+            </button>
+            <div class="dropdown-content" id="history-dropdown">
+                <a href="#" class="subgenre-link">Биографии</a>
+                <a href="#" class="subgenre-link">Военная проза</a>
+                <a href="#" class="subgenre-link">Исторические хроники</a>
+            </div>
+        </div>
+
+        <div class="genre-item">
+            <button class="genre-btn" onclick="toggleDropdown('science')">
+                <span>Научно-популярные</span>
+            </button>
+            <div class="dropdown-content" id="science-dropdown">
+                <a href="#" class="subgenre-link">Наука и техника</a>
+                <a href="#" class="subgenre-link">Психология</a>
+                <a href="#" class="subgenre-link">Саморазвитие</a>
+            </div>
+        </div>
+
+        <div class="genre-item">
+            <button class="genre-btn" onclick="toggleDropdown('children')">
+                <span>Детские</span>
+            </button>
+            <div class="dropdown-content" id="children-dropdown">
+                <a href="#" class="subgenre-link">Сказки</a>
+                <a href="#" class="subgenre-link">Приключения для детей</a>
+                <a href="#" class="subgenre-link">Образовательная литература</a>
+            </div>
+        </div>
+
+        <div class="genre-item">
+            <button class="genre-btn" onclick="toggleDropdown('poetry')">
+                <span>Поэзия</span>
+            </button>
+            <div class="dropdown-content" id="poetry-dropdown">
+                <a href="#" class="subgenre-link">Классическая поэзия</a>
+                <a href="#" class="subgenre-link">Современная поэзия</a>
+                <a href="#" class="subgenre-link">Лирика</a>
+            </div>
+        </div>
+    </nav>
+
+    
+</aside>
+
+<div class="sidebar-section">
+        <div class="sidebar-header">
+            <h3>Подборки</h3>
+            <nav class="collections-menu">
+                </div>
+            <!-- Подборка 1 -->
+            <div class="collection-item">
+                <a href="#" class="collection-link">
+                    <span>Топ-100</span>
+                </a>
+            </div>
+
+            <!-- Подборка 2 -->
+            <div class="collection-item">
+                <a href="#" class="collection-link">
+                    <span>Про деревню</span>
+                </a>
+            </div>
+
+            <!-- Подборка 3 -->
+            <div class="collection-item">
+                <a href="#" class="collection-link">
+                    <span>Про зомби</span>
+                </a>
+            </div>
+
+            <!-- Подборка 4 -->
+            <div class="collection-item">
+                <a href="#" class="collection-link">
+                    <span>Страшные истории</span>
+                </a>
+            </div>
+
+            <!-- Подборка 5 -->
+            <div class="collection-item">
+                <a href="#" class="collection-link">
+                    <span>Русские детективы</span>
+                </a>
+            </div>
+
+            <!-- Подборка 6 -->
+            <div class="collection-item">
+                <a href="#" class="collection-link">
+
+                    <span>Любовное фентези</span>
+                </a>
+            </div>
+
+            <!-- Подборка 7 -->
+            <div class="collection-item">
+                <a href="#" class="collection-link">
+                    <span>Пападанцы</span>
+                </a>
+            </div>
+
+            <!-- Подборка 8 -->
+            <div class="collection-item">
+                <a href="#" class="collection-link">
+                    <span>S.T.A.L.K.E.R</span>
+                </a>
+            </div>
+   <!-- Подборка 9 -->
+            <div class="collection-item">
+                <a href="#" class="collection-link">
+                    <span>Постапокалипсис</span>
+                </a>
+            </div>
+  <div class="collection-item">
+                <a href="#" class="collection-link">
+                    <span>Метро 2023</span>
+                </a>
+            </div>
+
+        </nav>
+        
+        
+        
+    </div>
+
+    <main class="main-content">
+        <div class="content-container">
+            <h1>Аудиокниги</h1>
+            <div class="books-grid">
+                <!-- Добавьте много контента здесь -->
+                <div class="book-card">
+                    <div class="book-image"><img src="pictures/книга2.jpg" width="250"
+              alt="">
+              <div class="book-duration">5ч 30м</div>
+             </div>
+              <div class="book-title-overlay">
+            <h3 class="book-title">Алибаба</h3>
+            <div class="book-info">
+             <p class="book-author">Автор: Иван Иванов</p>
+        <p class="book-genre">Жанр: Фэнтези</p>
+        <p class="book-description">Увлекательная история о приключениях в восточных землях...</p>
+        </div>
+            </div>
+            </div>
+                  <div class="book-card">
+                    <div class="book-image"><img src="pictures/13.jpg" width="250"
+              alt="">
+              <div class="book-duration">5ч 30м</div>
+             </div>
+              <div class="book-title-overlay">
+            <h3 class="book-title">Властелин колей</h3>
+            <div class="book-info">
+             <p class="book-author">Автор: Антонов Антуан</p>
+        <p class="book-genre">Жанр: Фэнтези</p>
+        <p class="book-description">Самое известное произведение жанра фэнтези, возглавляющее список культовых книг ХХ века. Ее автор, Джон Рональд Руэл Толкин, профессор Оксфордского университета, специалист по древнему и средневековому английскому языку, создал удивительный мир — Средиземье, который вот уже шестьдесят лет...</p>
+        </div>
+            </div>
+            </div>
+                 <div class="book-card"><img src="pictures/3.webp" width="250"
+             height="200" alt="">
+              <div class="book-title-overlay">
+            <h3>Гарри Гарис</h3>
+        </div>
+            </div> <div class="book-card"><img src="pictures/6.webp" width="250"
+             height="200" alt="">
+              <div class="book-title-overlay">
+            <h3>Чекнутая фантастика</h3>
+        </div>
+            </div> <div class="book-card"><img src="pictures/9.jpg" width="250"
+             height="200" alt="">
+              <div class="book-title-overlay">
+            <h3>Синий шар</h3>
+        </div>
+            </div> <div class="book-card"><img src="pictures/11.jpg" width="250"
+             height="200" alt="">
+              <div class="book-title-overlay">
+            <h3>Возле речки</h3>
+        </div>
+            </div> <div class="book-card"><img src="pictures/12.jpg" width="250"
+             height="200" alt="">
+              <div class="book-title-overlay">
+            <h3>Фалько</h3>
+        </div>
+            </div> <div class="book-card"><img src="pictures/13.jpg" width="250"
+             height="200" alt="">
+              <div class="book-title-overlay">
+            <h3>Реген</h3>
+        </div>
+            </div>
+                <!-- ... еще 20-30 карточек ... -->
+            </div>
+        </div>
+           <div class="pagination-container">
+    <div class="pagination">
+        <button class="pagination-btn prev-btn" onclick="changePage(currentPage - 1)">
+            ← Назад
+        </button>
+        
+        <div class="page-numbers">
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <span class="page-dots">...</span>
+            <button class="page-btn">10</button>
+        </div>
+        
+        <button class="pagination-btn next-btn" onclick="changePage(currentPage + 1)">
+            Вперед →
+        </button>
+    </div>
+    
+    <div class="pagination-info">
+        Показано 1-12 из 120 книг
+    </div>
+</div>
+    </main>
+ 
+</div>
+    <script src="main.js"></script>
+    <script src="modalAuth.js"></script>
+    <script src="paginations.js"></script>
+</body>
+</html>
