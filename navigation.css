@@ -6,23 +6,37 @@
             
         }
 
-       .navbar {
+ .navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     height: 90px;
     z-index: 1000;
-    /* ваши существующие стили остаются */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
     background-color: #e3d2b5;
+    transition: all 0.3s ease;
 }
-        .nav-container {
-padding-top: 10px;
-        }
+      .nav-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    flex: 0 0 auto; /* Не растягивается */
+}
+.nav-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: all 0.3s ease;
+    flex: 1; /* Занимает все оставшееся пространство */
+    justify-content: flex-end;
+    min-width: 0; /* Важно для flex-элементов */
+}
+
  .logo {
      font-family: "Cinzel", serif; 
     font-size: 24px;
@@ -41,13 +55,14 @@ padding-top: 10px;
     position: relative;
 
 }
- .search-container {
+.search-container {
     flex: 1;
     max-width: 700px;
     margin: 0 2rem;
     position: relative;
     display: flex;
     align-items: center;
+    min-width: 0; /* Предотвращает переполнение */
 }
 
 .search-input {
@@ -123,4 +138,146 @@ padding-top: 10px;
           
         }
 
+
+        /* Для мобильных устройств  */
+
+ .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: 2px solid #413c33;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    color: #413c33;
+    z-index: 1002;
+}
+/* Мобильное навигационное меню */
+.mobile-nav-menu {
+    display: none;
+    position: fixed;
+    top: 90px;
+    left: 0;
+    right: 0;
+    background: #e3d2b5;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    z-index: 999;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-search {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+.mobile-login {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+}
+
+.mobile-menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.mobile-menu-item {
+    padding: 12px 20px;
+    color: #413c33;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-menu-item:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+
+/* Медиа-запросы для мобильной версии */
+@media (max-width: 1024px) {
+    .mobile-menu-btn {
+        display: block;
+    }
     
+    .nav-content {
+        display: none;
+    }
+    
+    .nav-container .logo {
+        display: none;
+    }
+    
+    .nav-container {
+        margin-left: 50px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 1rem;
+        height: 80px;
+    }
+    
+    .mobile-menu-btn {
+        padding: 6px 10px;
+        font-size: 16px;
+    }
+    
+    .nav-container {
+        margin-left: 40px;
+    }
+    
+    .logo-img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .mobile-nav-menu {
+        top: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        height: 70px;
+    }
+    
+    .mobile-nav-menu {
+        top: 70px;
+        padding: 15px;
+    }
+    
+    .nav-container {
+        margin-left: 30px;
+    }
+}
+
+/* Классы для управления видимостью */
+.mobile-nav-active .mobile-nav-menu {
+    display: flex;
+}
+
+.mobile-nav-active .nav-container {
+    opacity: 0.7;
+}
+
+/* Анимация для мобильного меню */
+.mobile-nav-menu {
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
