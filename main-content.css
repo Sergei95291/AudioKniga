@@ -1,299 +1,216 @@
-/* ===== ОБНОВЛЕННЫЙ CSS ===== */
+/* ===== ОБНОВЛЕННЫЙ CSS ДЛЯ АДАПТИВНОСТИ ===== */
 
-/* СБРОС И БАЗОВЫЕ СТИЛИ */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* .mainsidebar {
-    overflow-x: hidden; 
-     min-height: 100vh; 
-     background-color: #ffffff; 
-}  */
-
-/* НАВБАР - ФИКСИРУЕМ */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 90px;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #e3d2b5;
-}
-
-/* САЙДБАРЫ - ФИКСИРУЕМ */
-.sidebar {
-    width: 280px;
-    background-color: #f8f9fa;
-    border: 4px solid rgba(227, 210, 181, 0.2);
-    border-radius: 6px;
-    /* height: 200px; */
-    min-height: 520px;
-    max-height: 800px;
-    position: absolute;
-    left: 10px;
-    top: 100px;
-    overflow:auto;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    z-index: 100;
-    display: grid;
-    grid-template-rows: auto;
-    transition: all 0.3s ease;
-}
-.sidebar-section {
-    width: 280px;
-    background-color: #f8f9fa;
-    border: 4px solid rgba(227, 210, 181, 0.2);
-    border-radius: 6px;
-    height: 500px;
-    position: absolute;
-    left: 10px;
-    top: 630px; /* Под первым сайдбаром */
-    overflow: hidden;
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    z-index: 100;
-}
-
-/* ОСНОВНОЙ КОНТЕНТ - ДОБАВЛЯЕМ ОТСТУП */
+/* Основной контент - адаптивный */
 .main-content {
-    margin-left: 300px; /* Ширина сайдбара + отступ */
-    padding: 0,30px,30px,30px;
-    min-height: 100;
+    margin-left: 300px; /* Ширина сайдбара + отступ для десктопа */
+    padding: 20px 30px;
+    min-height: 100vh;
     margin-top: 100px; /* Высота навбара */
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-         background-color: #efefef;
+    background-color: #efefef;
     border: 4px solid rgba(227, 210, 181, 0.2);
-      
+    transition: margin-left 0.3s ease;
 }
 
-/* СТИЛИ ДЛЯ КОНТЕНТА */
-.content-container {
-    max-width: 1200px;
-    margin: 0 auto;   
-}
-
-.content-container h1 {
-    color: #413c33;
-    font-family: "Cinzel", serif;
-    margin: 0;
-    font-size: 30px;
-    text-align: center;
-    letter-spacing: 1px;
-}
-
+/* Сетка книг - адаптивная */
 .books-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Уменьшили размер */
-    gap: 80px; /* Уменьшили gap */
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px; /* Уменьшаем отступ для мобильных */
     margin-top: 20px;
 }
-.book-title-overlay {
-   padding: 15px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s ease;
-}
-.book-title {
-    font-family: "Cinzel", serif;
-    font-size: 16px;
-    margin: 0 0 8px 0;
-    color: #413c33;
-    line-height: 1.3;
-    transition: margin 0.3s ease;
-}
-.book-info {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.3s ease;
-}
-.book-author, .book-genre, .book-description {
-    font-size: 12px;
-    color: #666;
-    margin: 2px 0;
-    line-height: 1.4;
-    transform: translateY(10px);
-    transition: transform 0.3s ease;
-}
-.book-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    height: 380px; /* Увеличиваем высоту при наведении */
-}
-.book-card:hover .book-image {
-    height: 150px; /* Уменьшаем изображение при наведении */
-}
-.book-card:hover .book-image img {
-    transform: scale(1.05);
-}
 
-.book-card:hover .book-duration {
-    opacity: 0; /* Скрываем длительность при наведении */
-}
-
-.book-card:hover .book-content {
-    padding-top: 10px;
-}
-
-.book-card:hover .book-title {
-    margin-bottom: 12px;
-}
-
-.book-card:hover .book-info {
-    max-height: 120px; /* Показываем информацию */
-    opacity: 1;
-}
-
-.book-card:hover .book-author,
-.book-card:hover .book-genre,
-.book-card:hover .book-description {
-    transform: translateY(0);
-}
-
-.book-card:hover .play-btn {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-    .book-card {
-        height: 280px;
-    }
-    
-    .book-card:hover {
-        height: 360px;
-    }
-    
-    .book-card:hover .book-image {
-        height: 130px;
-    }
-}
-
+/* Карточки книг - адаптивные */
 .book-card {
     background: white;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     overflow: hidden;
     transition: all 0.3s ease;
-    height: 300px; /* Уменьшаем высоту */
+    height: 300px;
     display: flex;
     flex-direction: column;
     position: relative;
     cursor: pointer;
 }
-.book-image {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
-    transition: height 0.3s ease;
-}
 
-.book-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-.book-duration {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 4px 8px;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 500;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-.book-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-}
+/* АДАПТИВНОСТЬ ДЛЯ РАЗНЫХ УСТРОЙСТВ */
 
-/* АДАПТИВНОСТЬ */
+/* Планшеты (1024px и меньше) */
 @media (max-width: 1024px) {
     .sidebar, .sidebar-section {
-        display: none; /* Скрываем на мобильных */
+        display: none; /* Скрываем сайдбары */
     }
     
-    /* .main-content {
+    .main-content {
         margin-left: 0;
         width: 100%;
-    } */
+        padding: 15px 20px;
+        margin-top: 90px;
+    }
+    
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+        gap: 15px;
+    }
+    
+    .book-card {
+        height: 280px;
+    }
 }
 
-/* Ваши существующие стили остаются ниже */
-.sidebar-header {
-    height: 45px;
-    border-bottom: 2px solid #e3d2b5;
+/* Планшеты (768px и меньше) */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 15px;
+        margin-top: 80px;
+    }
+    
+    .content-container h1 {
+        font-size: 24px;
+    }
+    
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 12px;
+    }
+    
+    .book-card {
+        height: 250px;
+    }
+    
+    .book-title {
+        font-size: 14px;
+    }
+    
+    /* Адаптация hover-эффектов для мобильных */
+    .book-card:hover {
+        transform: none; /* Отключаем поднятие на мобильных */
+        height: 250px;
+    }
+    
+    .book-card:hover .book-image {
+        height: 140px;
+    }
 }
 
-.sidebar-header h3 {
-    color: #413c33;
-    font-family: "Cinzel", serif;
-    margin: 0;
-    font-size: 1.2rem;
+/* Мобильные устройства (480px и меньше) */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 10px;
+        margin-top: 70px;
+    }
+    
+    .content-container h1 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+    
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки на маленьких экранах */
+        gap: 10px;
+    }
+    
+    .book-card {
+        height: 220px;
+    }
+    
+    .book-image {
+        height: 130px;
+    }
+    
+    .book-title {
+        font-size: 12px;
+        padding: 8px;
+    }
+    
+    .book-duration {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    /* Пагинация для мобильных */
+    .pagination {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .page-numbers {
+        order: 3;
+        margin: 10px 0;
+    }
+    
+    .pagination-info {
+        text-align: center;
+        font-size: 12px;
+    }
 }
 
-.genre-menu {
-    flex: 1; /* Занимает все доступное пространство */
-    overflow-y: auto; /* Добавляем прокрутку если контент не помещается */
-    padding: 10px 15px;
+/* Очень маленькие устройства (360px и меньше) */
+@media (max-width: 360px) {
+    .books-grid {
+        grid-template-columns: 1fr; /* 1 колонка на очень маленьких экранах */
+    }
+    
+    .book-card {
+        height: 200px;
+        max-width: 200px;
+        margin: 0 auto;
+    }
 }
 
-.genre-item {
-    display: grid;
-    grid-template-rows: auto auto;
-    gap: 1px;
+/* Улучшенная пагинация для мобильных */
+@media (max-width: 768px) {
+    .pagination-container {
+        padding: 15px 0;
+    }
+    
+    .pagination {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+    
+    .pagination-btn {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    
+    .page-btn {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+    
+    .page-dots {
+        margin: 0 5px;
+    }
 }
 
-.dropdown-content {
-    display: none;
-    grid-row: 2;
-    background-color: #f9f9f9;
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 5px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+/* Улучшенные hover-эффекты только для устройств с hover */
+@media (hover: hover) {
+    .book-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        height: 350px;
+    }
+    
+    .book-card:hover .book-image {
+        height: 150px;
+    }
+    
+    .book-card:hover .book-info {
+        max-height: 120px;
+        opacity: 1;
+    }
 }
 
-.sidebar.expanded {
-    max-height: 800px;
-    overflow-y: auto;
+/* Для устройств без hover (мобильные) */
+@media (hover: none) {
+    .book-card:active {
+        transform: scale(0.98);
+    }
+    
+    /* Альтернатива hover для мобильных - можно добавить класс через JS при тапе */
 }
-
-.genre-item {
-    margin-bottom: 0.5rem;
-}
-
-.genre-btn {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background: none;
-    border: none;
-    text-align: left;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #413c33;
-    font-weight: 500;
-    transition: background-color 0.3s ease;
-}
-
-.genre-btn:hover {
-    background-color: #e3d2b5;
-}
-
-/* ... остальные ваши стили ... */
