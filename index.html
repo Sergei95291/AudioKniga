@@ -13,40 +13,45 @@
 </head>
 <body>
     <div class="mainsidebar">
-    <div class="navbar" name="navBar">
-        <div class="nav-container"><img src="pictures/logo.jpg" alt="Логотип" class="logo-img">
-        <div class="logo">Anc</div></div>
+   <div class="navbar" name="navBar">
+    <!-- Кнопка мобильного меню -->
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
     
-        
+    <!-- Контейнер навбара -->
+    <div class="nav-container" id="navContainer">
+        <img src="pictures/logo.jpg" alt="Логотип" class="logo-img">
+        <div class="logo">Anc</div>
+    </div>
+    
+    <!-- Поиск и кнопка входа -->
+    <div class="nav-content" id="navContent">
         <div class="search-container">
-            <input type="text" class="search-input" placeholder="Поиск аудиокниг по автору, исполнителю,названию...">
-       <button class="search-button">Найти</button>
+            <input type="text" class="search-input" placeholder="Поиск аудиокниг...">
+            <button class="search-button">Найти</button>
         </div>
         
         <button class="login-btn">Войти</button>
-        <!-- Модальное окно авторизации -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeLoginModal()">&times;</span>
-        <h2>Вход в аккаунт</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Пароль:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="submit-btn">Войти</button>
-        </form>
-        <div class="auth-links">
-            <a href="#" class="auth-link">Забыли пароль?</a>
-            <a href="#" class="auth-link">Регистрация</a>
+    </div>
+    
+    <!-- Мобильное меню (изначально скрыто) -->
+    <div class="mobile-nav-menu" id="mobileNavMenu">
+        <div class="search-container mobile-search">
+            <input type="text" class="search-input" placeholder="Поиск...">
+            <button class="search-button">Найти</button>
+        </div>
+        
+        <button class="login-btn mobile-login">Войти</button>
+       
+    
+        <!-- Дублируем элементы меню для мобильной версии -->
+        <div class="mobile-menu-items">
+            <a href="#" class="mobile-menu-item">Жанры</a>
+            <a href="#" class="mobile-menu-item">Подборки</a>
+            <a href="#" class="mobile-menu-item">Топ-100</a>
+            <a href="#" class="mobile-menu-item">Новинки</a>
         </div>
     </div>
 </div>
-    </div>
 
     <aside class="sidebar">
 
@@ -246,40 +251,127 @@
             <h1>Аудиокниги</h1>
             <div class="books-grid">
                 <!-- Добавьте много контента здесь -->
-                <div class="book-card">
-                    <div class="book-image"><img src="pictures/книга2.jpg" width="250"
-              alt="">
-              <div class="book-duration">5ч 30м</div>
-             </div>
-              <div class="book-title-overlay">
+                   <div class="book-card">
+        <div class="book-image">
+            <img src="pictures/книга2.jpg" alt="Алибаба">
+            <div class="book-duration">5ч 30м</div>
+        </div>
+        <div class="book-content">
             <h3 class="book-title">Алибаба</h3>
             <div class="book-info">
-             <p class="book-author">Автор: Иван Иванов</p>
-        <p class="book-genre">Жанр: Фэнтези</p>
-        <p class="book-description">Увлекательная история о приключениях в восточных землях...</p>
+                <p class="book-author">Автор: Иван Иванов</p>
+                <p class="book-genre">Жанр: Фэнтези</p>
+                <p class="book-description">Увлекательная история о приключениях в восточных землях...</p>
+            </div>
         </div>
-            </div>
-            </div>
-                  <div class="book-card">
-                    <div class="book-image"><img src="pictures/13.jpg" width="250"
-              alt="">
-              <div class="book-duration">5ч 30м</div>
-             </div>
-              <div class="book-title-overlay">
+    </div>
+                   <div class="book-card">
+        <div class="book-image">
+            <img src="pictures/13.jpg" alt="Властелин колей">
+            <div class="book-duration">5ч 30м</div>
+        </div>
+        <div class="book-content">
             <h3 class="book-title">Властелин колей</h3>
             <div class="book-info">
-             <p class="book-author">Автор: Антонов Антуан</p>
-        <p class="book-genre">Жанр: Фэнтези</p>
-        <p class="book-description">Самое известное произведение жанра фэнтези, возглавляющее список культовых книг ХХ века. Ее автор, Джон Рональд Руэл Толкин, профессор Оксфордского университета, специалист по древнему и средневековому английскому языку, создал удивительный мир — Средиземье, который вот уже шестьдесят лет...</p>
+                <p class="book-author">Автор: Антонов Антуан</p>
+                <p class="book-genre">Жанр: Фэнтези</p>
+                <p class="book-description">Самое известное произведение жанра фэнтези...</p>
+            </div>
         </div>
+    </div>
+
+<div class="book-card">
+        <div class="book-image">
+            <img src="pictures/книга2.jpg" alt="Алибаба">
+            <div class="book-duration">5ч 30м</div>
+        </div>
+        <div class="book-content">
+            <h3 class="book-title">Алибаба</h3>
+            <div class="book-info">
+                <p class="book-author">Автор: Иван Иванов</p>
+                <p class="book-genre">Жанр: Фэнтези</p>
+                <p class="book-description">Увлекательная история о приключениях в восточных землях...</p>
             </div>
+        </div>
+    </div>
+                   <div class="book-card">
+        <div class="book-image">
+            <img src="pictures/13.jpg" alt="Властелин колей">
+            <div class="book-duration">5ч 30м</div>
+        </div>
+        <div class="book-content">
+            <h3 class="book-title">Властелин колей</h3>
+            <div class="book-info">
+                <p class="book-author">Автор: Антонов Антуан</p>
+                <p class="book-genre">Жанр: Фэнтези</p>
+                <p class="book-description">Самое известное произведение жанра фэнтези...</p>
             </div>
+        </div>
+    </div>
+    <div class="book-card">
+        <div class="book-image">
+            <img src="pictures/9.jpg" alt="Алибаба">
+            <div class="book-duration">5ч 30м</div>
+        </div>
+        <div class="book-content">
+            <h3 class="book-title">Алибаба</h3>
+            <div class="book-info">
+                <p class="book-author">Автор: Иван Иванов</p>
+                <p class="book-genre">Жанр: Фэнтези</p>
+                <p class="book-description">Увлекательная история о приключениях в восточных землях...</p>
+            </div>
+        </div>
+    </div>
+                   <div class="book-card">
+        <div class="book-image">
+            <img src="pictures/11.jpg" alt="Властелин колей">
+            <div class="book-duration">5ч 30м</div>
+        </div>
+        <div class="book-content">
+            <h3 class="book-title">Властелин колей</h3>
+            <div class="book-info">
+                <p class="book-author">Автор: Антонов Антуан</p>
+                <p class="book-genre">Жанр: Фэнтези</p>
+                <p class="book-description">Самое известное произведение жанра фэнтези...</p>
+            </div>
+        </div>
+    </div>
+    <div class="book-card">
+        <div class="book-image">
+            <img src="pictures/12.jpg" alt="Алибаба">
+            <div class="book-duration">5ч 30м</div>
+        </div>
+        <div class="book-content">
+            <h3 class="book-title">Алибаба</h3>
+            <div class="book-info">
+                <p class="book-author">Автор: Иван Иванов</p>
+                <p class="book-genre">Жанр: Фэнтези</p>
+                <p class="book-description">Увлекательная история о приключениях в восточных землях...</p>
+            </div>
+        </div>
+    </div>
+                   <div class="book-card">
+        <div class="book-image">
+            <img src="pictures/13.jpg" alt="Властелин колей">
+            <div class="book-duration">5ч 30м</div>
+        </div>
+        <div class="book-content">
+            <h3 class="book-title">Властелин колей</h3>
+            <div class="book-info">
+                <p class="book-author">Автор: Антонов Антуан</p>
+                <p class="book-genre">Жанр: Фэнтези</p>
+                <p class="book-description">Самое известное произведение жанра фэнтези...</p>
+            </div>
+        </div>
+    </div>
+<!-- 
                  <div class="book-card"><img src="pictures/3.webp" width="250"
              height="200" alt="">
               <div class="book-title-overlay">
             <h3>Гарри Гарис</h3>
         </div>
-            </div> <div class="book-card"><img src="pictures/6.webp" width="250"
+            </div>
+             <div class="book-card"><img src="pictures/6.webp" width="250"
              height="200" alt="">
               <div class="book-title-overlay">
             <h3>Чекнутая фантастика</h3>
@@ -303,7 +395,7 @@
              height="200" alt="">
               <div class="book-title-overlay">
             <h3>Реген</h3>
-        </div>
+        </div> -->
             </div>
                 <!-- ... еще 20-30 карточек ... -->
             </div>
@@ -334,6 +426,27 @@
     </main>
  
 </div>
+   <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2 class="textAuth">Вход в аккаунт</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="submit-btn">Войти</button>
+            </form>
+            <div class="auth-links">
+                <a href="#" class="auth-link">Забыли пароль?</a>
+                <a href="#" class="auth-link">Регистрация</a>
+            </div>
+        </div>
+    </div>
     <script src="main.js"></script>
     <script src="modalAuth.js"></script>
     <script src="paginations.js"></script>
