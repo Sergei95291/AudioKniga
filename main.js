@@ -72,3 +72,54 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('resize', calculateSidebarHeight);
 
 
+// Адаптивность для мобильных устройств 
+
+let isMobileMenuOpen = false;
+
+function toggleMobileMenu() {
+    const navbar = document.querySelector('.navbar');
+    const mobileNavMenu = document.getElementById('mobileNavMenu');
+    const body = document.body;
+    
+    isMobileMenuOpen = !isMobileMenuOpen;
+    
+    if (isMobileMenuOpen) {
+        navbar.classList.add('mobile-nav-active');
+        mobileNavMenu.style.display = 'flex';
+        body.style.overflow = 'hidden'; // Блокируем скролл страницы
+    } else {
+        navbar.classList.remove('mobile-nav-active');
+        mobileNavMenu.style.display = 'none';
+        body.style.overflow = ''; // Разблокируем скролл
+    }
+}
+
+// Закрытие мобильного меню при клике вне его
+document.addEventListener('click', function(event) {
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const mobileNavMenu = document.getElementById('mobileNavMenu');
+    const navbar = document.querySelector('.navbar');
+    
+    if (isMobileMenuOpen && 
+        !event.target.closest('.mobile-nav-menu') && 
+        !event.target.closest('.mobile-menu-btn')) {
+        
+        navbar.classList.remove('mobile-nav-active');
+        mobileNavMenu.style.display = 'none';
+        isMobileMenuOpen = false;
+        document.body.style.overflow = '';
+    }
+});
+
+// Закрытие меню при изменении размера окна
+window.addEventListener('resize', function() {
+    if (window.innerWidth > 1024 && isMobileMenuOpen) {
+        const navbar = document.querySelector('.navbar');
+        const mobileNavMenu = document.getElementById('mobileNavMenu');
+        
+        navbar.classList.remove('mobile-nav-active');
+        mobileNavMenu.style.display = 'none';
+        isMobileMenuOpen = false;
+        document.body.style.overflow = '';
+    }
+});
