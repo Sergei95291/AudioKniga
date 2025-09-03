@@ -1,216 +1,403 @@
-/* ===== ОБНОВЛЕННЫЙ CSS ДЛЯ АДАПТИВНОСТИ ===== */
+/* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
+.mainsidebar {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ===== ОБНОВЛЕННЫЙ CSS ДЛЯ MAIN-CONTENT ===== */
 
 /* Основной контент - адаптивный */
 .main-content {
-    margin-left: 300px; /* Ширина сайдбара + отступ для десктопа */
-    padding: 20px 30px;
-    min-height: 100vh;
-    margin-top: 100px; /* Высота навбара */
+    flex: 1; /* Занимает все доступное пространство */
+    padding: 25px 35px;
+    margin-top: 100px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     background-color: #efefef;
     border: 4px solid rgba(227, 210, 181, 0.2);
-    transition: margin-left 0.3s ease;
+    overflow-y: auto; /* Добавляем прокрутку если контента много */
 }
 
-/* Сетка книг - адаптивная */
+/* Контейнер контента */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* Сетка книг - равномерное распределение */
 .books-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 20px; /* Уменьшаем отступ для мобильных */
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-top: 25px;
+    flex: 1; /* Занимает доступное пространство */
 }
 
-/* Карточки книг - адаптивные */
+/* Карточки книг - УВЕЛИЧЕННЫЙ РАЗМЕР */
 .book-card {
     background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
     overflow: hidden;
-    transition: all 0.3s ease;
-    height: 300px;
+    transition: all 0.4s ease;
+    height: 350px;
     display: flex;
     flex-direction: column;
     position: relative;
     cursor: pointer;
 }
 
+/* Изображение книги - УВЕЛИЧЕНО */
+.book-image {
+    height: 220px;
+    overflow: hidden;
+    position: relative;
+}
+
+.book-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+/* Длительность аудиокниги - УВЕЛИЧЕНА */
+.book-duration {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+/* Заголовок книги - БОЛЬШЕ РАЗМЕР */
+.book-content {
+    padding: 20px;
+    background: white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0 0 10px 0;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* Информация о книге - БОЛЬШЕ РАЗМЕР И ПРОСТРАНСТВА */
+.book-info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 300px; /* Ширина выезжающей панели */
+    background: rgba(255, 255, 255, 0.98);
+    padding: 25px;
+    transform: translateX(100%);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    backdrop-filter: blur(12px);
+    border-left: 3px solid #e3d2b5;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.book-author, .book-genre, .book-description {
+    margin: 0 0 12px 0;
+    color: #333;
+    line-height: 1.5;
+}
+
+.book-author {
+    font-size: 16px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.book-genre {
+    font-size: 15px;
+    color: #7f8c8d;
+    font-style: italic;
+    font-weight: 500;
+}
+
+.book-description {
+    font-size: 15px;
+    color: #555;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* HOVER ЭФФЕКТЫ ТОЛЬКО ДЛЯ ДЕСКТОПОВ - ВЫЕЗЖАЕТ СПРАВА */
+@media (hover: hover) {
+    .book-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+    }
+    
+    .book-card:hover .book-image img {
+        transform: scale(1.08);
+    }
+    
+    .book-card:hover .book-info {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Пагинация внизу */
+.pagination-container {
+    margin-top: auto; /* Прижимаем к низу */
+    padding-top: 30px;
+}
+
 /* АДАПТИВНОСТЬ ДЛЯ РАЗНЫХ УСТРОЙСТВ */
+
+/* Большие экраны (1200px+) */
+@media (min-width: 1200px) {
+    .books-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 30px;
+    }
+}
 
 /* Планшеты (1024px и меньше) */
 @media (max-width: 1024px) {
     .sidebar, .sidebar-section {
-        display: none; /* Скрываем сайдбары */
+        display: none;
     }
     
     .main-content {
         margin-left: 0;
         width: 100%;
-        padding: 15px 20px;
+        padding: 20px 25px;
         margin-top: 90px;
     }
     
     .books-grid {
-        grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
     }
     
     .book-card {
-        height: 280px;
+        height: 320px;
+    }
+    
+    .book-image {
+        height: 190px;
+    }
+    
+    .book-title {
+        font-size: 18px;
+    }
+    
+    .book-info {
+        width: 250px;
+        padding: 20px;
     }
 }
 
-/* Планшеты (768px и меньше) */
+/* Планшеты (768px и меньше) - ИСПРАВЛЕННЫЙ МЕДИА-ЗАПРОС */
 @media (max-width: 768px) {
     .main-content {
-        padding: 15px;
+        padding: 18px;
         margin-top: 80px;
     }
     
     .content-container h1 {
-        font-size: 24px;
+        font-size: 26px;
+        margin-bottom: 20px;
     }
     
     .books-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 12px;
+        grid-template-columns: 1fr; /* Одна колонка на планшетах */
+        gap: 18px;
     }
     
     .book-card {
-        height: 250px;
+        height: 300px;
+        max-width: 100%;
+    }
+    
+    .book-image {
+        height: 170px;
     }
     
     .book-title {
-        font-size: 14px;
+        font-size: 17px;
     }
     
-    /* Адаптация hover-эффектов для мобильных */
-    .book-card:hover {
-        transform: none; /* Отключаем поднятие на мобильных */
-        height: 250px;
-    }
-    
-    .book-card:hover .book-image {
-        height: 140px;
+    /* На планшетах тоже показываем информацию при hover */
+    @media (hover: hover) {
+        .book-card:hover .book-info {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
 }
 
-/* Мобильные устройства (480px и меньше) */
+/* Мобильные устройства (480px и меньше) - ИСПРАВЛЕННЫЙ МЕДИА-ЗАПРОС */
 @media (max-width: 480px) {
     .main-content {
-        padding: 10px;
+        padding: 15px;
         margin-top: 70px;
     }
     
     .content-container h1 {
-        font-size: 20px;
-        margin-bottom: 15px;
+        font-size: 22px;
+        margin-bottom: 18px;
     }
     
     .books-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 колонки на маленьких экранах */
-        gap: 10px;
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
     
     .book-card {
-        height: 220px;
+        max-width: 100%;
+        margin: 0 auto;
+        height: auto;
+        min-height: 280px;
     }
     
     .book-image {
-        height: 130px;
+        height: 180px;
     }
     
     .book-title {
-        font-size: 12px;
-        padding: 8px;
+        font-size: 16px;
     }
     
-    .book-duration {
-        font-size: 10px;
-        padding: 2px 6px;
+    .book-author {
+        font-size: 15px;
     }
     
-    /* Пагинация для мобильных */
-    .pagination {
-        flex-direction: column;
-        gap: 10px;
-    }
-    
-    .page-numbers {
-        order: 3;
-        margin: 10px 0;
-    }
-    
-    .pagination-info {
-        text-align: center;
-        font-size: 12px;
-    }
-}
-
-/* Очень маленькие устройства (360px и меньше) */
-@media (max-width: 360px) {
-    .books-grid {
-        grid-template-columns: 1fr; /* 1 колонка на очень маленьких экранах */
-    }
-    
-    .book-card {
-        height: 200px;
-        max-width: 200px;
-        margin: 0 auto;
-    }
-}
-
-/* Улучшенная пагинация для мобильных */
-@media (max-width: 768px) {
-    .pagination-container {
-        padding: 15px 0;
-    }
-    
-    .pagination {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 5px;
-    }
-    
-    .pagination-btn {
-        padding: 8px 12px;
+    .book-genre, .book-description {
         font-size: 14px;
     }
     
-    .page-btn {
-        width: 30px;
-        height: 30px;
-        font-size: 12px;
+    .book-duration {
+        font-size: 13px;
+        padding: 6px 12px;
     }
     
-    .page-dots {
-        margin: 0 5px;
+    /* На мобильных с поддержкой hover (некоторые планшеты) */
+    @media (hover: hover) {
+        .book-card:hover .book-info {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
 }
 
-/* Улучшенные hover-эффекты только для устройств с hover */
-@media (hover: hover) {
-    .book-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-        height: 350px;
-    }
-    
-    .book-card:hover .book-image {
-        height: 150px;
-    }
-    
-    .book-card:hover .book-info {
-        max-height: 120px;
-        opacity: 1;
-    }
-}
-
-/* Для устройств без hover (мобильные) */
+/* Для устройств без hover (обычные мобильные) */
 @media (hover: none) {
+    .book-card {
+        height: auto; /* Автоматическая высота */
+    }
+    
+    .book-info {
+        position: relative;
+        width: 100%;
+        height: auto;
+        transform: none;
+        opacity: 1;
+        padding: 20px;
+        border-left: none;
+        border-top: 2px solid #eee;
+        background: white;
+    }
+    
     .book-card:active {
         transform: scale(0.98);
     }
     
-    /* Альтернатива hover для мобильных - можно добавить класс через JS при тапе */
+    /* Скрываем информацию по умолчанию и показываем по клику */
+    .book-info {
+        display: none;
+    }
+    
+    .book-card.active .book-info {
+        display: block;
+    }
+}
+
+/* Улучшенная анимация */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.book-info {
+    animation: slideIn 0.4s ease-out;
+}
+
+/* Кастомный скролл для информации */
+.book-info::-webkit-scrollbar {
+    width: 6px;
+}
+
+.book-info::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.book-info::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.book-info::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Дополнительные стили для мобильной версии */
+@media (max-width: 768px) {
+    .book-card {
+        margin-bottom: 15px;
+    }
+    
+    /* Увеличиваем область клика для мобильных */
+    .book-card {
+        padding: 0;
+    }
+}
+
+/* Оптимизация для очень маленьких экранов */
+@media (max-width: 360px) {
+    .main-content {
+        padding: 12px;
+    }
+    
+    .books-grid {
+        gap: 12px;
+    }
+    
+    .book-image {
+        height: 160px;
+    }
+    
+    .book-title {
+        font-size: 15px;
+        padding: 12px;
+    }
+    
+    .book-info {
+        padding: 15px;
+    }
 }
