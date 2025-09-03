@@ -1,4 +1,10 @@
+.mainsidebar {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
 
+/* ОСНОВНОЙ САЙДБАР */
 .sidebar {
     width: 280px;
     background-color: #f8f9fa;
@@ -10,13 +16,17 @@
     top: 100px;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     z-index: 100;
-    /* Добавляем плавную анимацию */
     transition: all 0.3s ease;
+    overflow-y: auto;
 }
 
 .sidebar-header {
-    padding: 1rem 1rem 1rem;
+    padding: 1rem;
     border-bottom: 2px solid #e3d2b5;
+    position: sticky;
+    top: 0;
+    background: #f8f9fa;
+    z-index: 1;
 }
 
 .sidebar-header h3 {
@@ -28,9 +38,8 @@
 
 .genre-menu {
     flex: 1;
-    overflow-y: auto; /* Скролл только здесь */
+    overflow-y: auto;
     padding: 15px;
-    /* Убираем лишние отступы */
     margin: 0;
 }
 
@@ -98,27 +107,26 @@
     color: #413c33;
 }
 
-/* Стили для блока Подборки */
-/* .sidebar-section {
+/* ВТОРОЙ САЙДБАР (ПОДБОРКИ) */
+.sidebar-section {
     width: 280px;
     background-color: #f8f9fa;
     border: 4px solid rgba(227, 210, 181, 0.2);
     border-radius: 6px;
-    height: 300px;
     position: fixed;
     left: 10px;
-    top: 630px;
-    overflow-y: auto;
+    top: 635px; /* Правильное позиционирование под первым сайдбаром */
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-    z-index: 100;
-    /* Добавляем плавную анимацию */
-    /* transition: all 0.3s ease; */
-/* } */ 
-
-
+    z-index: 99;
+    transition: all 0.3s ease;
+    overflow-y: auto;
+    max-height: calc(100vh - 650px); /* Динамическая высота */
+}
 
 .collections-menu {
     padding: 0.5rem 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .collection-item {
@@ -148,81 +156,46 @@
     text-align: center;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-        position: static;
-        height: auto;
-        margin-top: 0;
-    }
-    
-    .sidebar-section {
-        margin-bottom: 1rem;
-        padding-bottom: 0.8rem;
-    }
-    
-    .collection-link {
-        padding: 0.5rem 0.8rem;
-    }
-}
-
-/* ВАЖНО: Добавляем медиа-запрос для 1028px */
-@media (max-width: 1028px) {
+/* АДАПТИВНОСТЬ ДЛЯ ПЛАНШЕТОВ (1024px и меньше) */
+@media (max-width: 1024px) {
     .sidebar, .sidebar-section {
-        /* Вместо удаления - скрываем */
-        display: none;
-        /* Или альтернатива - делаем выдвижными */
+        display: none; /* Скрываем на планшетах и мобильных */
     }
     
-    /* Альтернативный вариант - выдвижные сайдбары */
-    /*
-    .sidebar {
-        transform: translateX(-100%);
-        left: 0;
-        top: 0;
-        height: 100vh;
-        width: 280px;
-    }
-    
-    .sidebar-section {
-        display: none; // Или также скрываем
-    }
-    */
-}
-
-/* Дополнительная адаптивность для мобильных */
-@media (max-width: 768px) {
-    .sidebar, .sidebar-section {
+    .main-content {
+        margin-left: 0;
         width: 100%;
-        position: fixed;
-        left: 0;
-        right: 0;
-        height: auto;
-        max-height: 80vh;
-        overflow-y: auto;
-    }
-    
-    .sidebar {
-        top: 60px;
-        height: auto;
-        max-height: 50vh;
-    }
-    
-    .sidebar-section {
-        top: auto;
-        bottom: 0;
-        height: auto;
-        max-height: 40vh;
-    }
-    
-    .collection-link {
-        padding: 0.5rem 0.8rem;
     }
 }
 
-/* Класс для показа сайдбаров на мобильных */
+/* АДАПТИВНОСТЬ ДЛЯ МОБИЛЬНЫХ (768px и меньше) */
+@media (max-width: 768px) {
+    /* Стили для мобильного меню, если нужно */
+}
+
+/* ДЛЯ БОЛЬШИХ ЭКРАНОВ - убедимся, что сайдбары видны */
+@media (min-width: 1025px) {
+    .sidebar, .sidebar-section {
+        display: block !important;
+    }
+}
+
+/* Класс для ручного управления видимостью */
 .sidebar-visible {
     display: block !important;
-    transform: translateX(0);
+}
+
+/* Убедимся, что основной контент не перекрывается */
+.main-content {
+    margin-left: 300px; /* Отступ для сайдбара */
+    width: calc(100% - 300px);
+    transition: margin-left 0.3s ease;
+}
+
+/* Когда сайдбары скрыты */
+@media (max-width: 1024px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
 }
