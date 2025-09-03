@@ -123,3 +123,28 @@ window.addEventListener('resize', function() {
         document.body.style.overflow = '';
     }
 });
+
+/* JavaScript для обработки кликов на мобильных  карточки */
+document.addEventListener('DOMContentLoaded', function() {
+    if (matchMedia('(hover: none)').matches) {
+        const bookCards = document.querySelectorAll('.book-card');
+        bookCards.forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Закрываем другие открытые карточки
+                bookCards.forEach(otherCard => {
+                    if (otherCard !== this) {
+                        otherCard.classList.remove('active');
+                    }
+                });
+                
+                // Переключаем текущую карточку
+                this.classList.toggle('active');
+                
+                // Прокручиваем к карточке если она открывается
+                if (this.classList.contains('active')) {
+                    this.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+                }
+            });
+        });
+    }
+});
